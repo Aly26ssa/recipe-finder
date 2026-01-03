@@ -1,0 +1,89 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-font: 'Arial', sans-serif;
+    --secondary-font: 'Times New Roman', serif;
+}
+
+html {
+    font-size: 62.5%;
+    
+}
+
+.recipe__finder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.recipe__finder-title {
+    
+}
+
+.recipe__title-name {
+    font-family: var(--primary-font);
+    font-size: 7rem;
+}
+
+.recipe__text {
+    font-family: var(--secondary-font);
+    font-size: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    text-align: center;
+}
+
+.recipe__search {
+    
+}
+
+.recipe__search-box {
+    font-family: var(--secondary-font);
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.recipe__search-btn {
+    font-family: var(--secondary-font);
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin-right: 5rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.recipe__search-btn:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+
+.recipe__random-btn {
+    display: flex;
+    font-family: var(--secondary-font);
+    background-color: pink;
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin-left: 5rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.recipe__random-btn:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.recipe__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding-top: 5rem;
+}
