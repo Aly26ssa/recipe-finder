@@ -48,6 +48,8 @@ html {
     padding: 1rem;
     font-size: 1.5rem;
     margin-bottom: 3rem;
+    border-radius: 8px;
+    border-width: 1px;
 }
 
 .recipe__search-btn {
@@ -84,8 +86,12 @@ html {
 
 .recipe__container {
     display: grid;
-    grid-template-columns: auto-fit;
-    padding-top: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    
 }
 
 .recipe__container-card h2 {
@@ -94,4 +100,8 @@ html {
     text-align: center;
     padding-top: 3rem;
     padding-bottom: 3rem;
+}
+
+.recipe__container-card img {
+    width: 100%;
 }
