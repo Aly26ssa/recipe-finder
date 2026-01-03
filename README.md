@@ -4,14 +4,13 @@ A simple and responsive web application that allows users to search for deliciou
 
 ## 📸 Screenshot
 
-![Project Screenshot](path/to/your/screenshot.png)
-*(Note: Upload a screenshot of your app to your repo and link it here)*
+![recipe-project](image.png)
 
 ## ✨ Features
 
 * **Recipe Search:** Users can input keywords to find specific meals.
 * **Dynamic Results:** Fetches and renders recipe cards asynchronously.
-* **Responsive Design:** specific layouts for different screen sizes using CSS Grid and Flexbox.
+
 * **Modern UI:** Clean styling with hover effects and CSS variables.
 
 ## 🛠️ Tech Stack
@@ -27,7 +26,7 @@ To run this project locally on your machine, follow these steps:
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/your-username/random-recipe.git](https://github.com/your-username/random-recipe.git)
+    git clone [https://github.com/Aly26ssa/random-recipe.git](https://github.com/Aly26ssa/random-recipe.git)
     ```
 
 2.  **Navigate to the project directory**
