@@ -18,15 +18,13 @@ async function fetchRecipes(query) {
         `
         recipeContainer.appendChild(recipeCard);
     });
-
-    // console.log(data.meals[0]);
 };
 
 // Enabling recipe search functionality
 searchButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const searchRecipes = searchBox.value;
-        fetchRecipes(searchRecipes);
+        const searchRecipe = searchBox.value;
+        fetchRecipes(searchRecipe);
 });
 
 // Fetching random recipes
@@ -35,11 +33,26 @@ async function fetchRandomRecipes() {
     const data = await response.json();
     // console.log(data.meals[0]);
     
+    recipeContainer.innerHTML = "";
+    data.meals.forEach((meal) => {
+        const randomRecipeCard = document.createElement('div');
+        randomRecipeCard.classList.add('recipe__random-card');
+        randomRecipeCard.innerHTML = `
+            <h2>${meal.strMeal}</h2>
+            <img src="${meal.strMealThumb}"/>
+        `
+        recipeContainer.appendChild(randomRecipeCard);
+    });
 };
 
+// Enabling random recipe functionality
 randomButton.addEventListener('click', (e) => {
     e.preventDefault();
-    // const randomRecipes = recipeContainer;
-    fetchRandomRecipes(randomRecipes);
-
+    const randomRecipe = recipeContainer.value;
+    fetchRandomRecipes(randomRecipe);
 });
+
+
+
+
+
