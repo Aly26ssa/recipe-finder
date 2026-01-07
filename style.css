@@ -11,7 +11,7 @@
 
 html {
     font-size: 62.5%;
-    
+    padding-bottom: 5rem;
 }
 
 .recipe__finder {
@@ -19,10 +19,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-}
-
-.recipe__finder-title {
+    padding-top: 12rem;
     
 }
 
@@ -40,12 +37,15 @@ html {
 }
 
 .recipe__search {
-    
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 .recipe__search-box {
     font-family: var(--secondary-font);
-    padding: 1rem;
+    padding: 1.5rem;
     font-size: 1.5rem;
     margin-bottom: 3rem;
     border-radius: 8px;
@@ -56,11 +56,12 @@ html {
     font-family: var(--secondary-font);
     background-color: black;
     color: white;
-    padding: 1rem;
+    padding: 1.75rem 2rem 2rem 2rem;
     font-size: 1.5rem;
-    margin-right: 5rem;
     border-radius: 8px;
     border: none;
+    height: 5rem;
+    text-align: center;
 }
 
 .recipe__search-btn:hover {
@@ -68,13 +69,17 @@ html {
     cursor: pointer;
 }
 
-.recipe__random-btn {
+.recipe__random {
     display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.recipe__random-btn {
     font-family: var(--secondary-font);
     background-color: pink;
-    padding: 1rem;
-    font-size: 1.5rem;
-    margin-left: 5rem;
+    padding: 1.75rem;
+    font-size: 1.75rem;
     border-radius: 8px;
     border: none;
 }
@@ -88,10 +93,14 @@ html {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    padding: 5rem 2rem;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding-top: 4rem;
     
+}
+
+.recipe__container-card {
+    transition: all 0.5s ease-in-out;
 }
 
 .recipe__container-card h2 {
@@ -104,4 +113,36 @@ html {
 
 .recipe__container-card img {
     width: 100%;
+}
+
+.recipe__container-card img:hover {
+    cursor: pointer;
+    transform: translateY(3px);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 15%);
+}
+
+.recipe__random-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.5s ease-in-out;
+}
+
+.recipe__random-card img:hover {
+    cursor: pointer;
+    transform: translateY(3px);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 15%);
+}
+
+.recipe__random-card h2 {
+    font-size: 3rem;
+    font-family: var(--primary-font);
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.recipe__random-card img {
+    width: 50%;
 }
