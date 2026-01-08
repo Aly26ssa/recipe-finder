@@ -2,6 +2,10 @@ const searchBox = document.querySelector(".recipe__search-box");
 const searchButton = document.querySelector(".recipe__search-btn");
 const recipeContainer = document.querySelector(".recipe__container");
 const randomButton = document.querySelector(".recipe__random-btn");
+// const ingredientsContainer= document.querySelector(".ingredients__container");
+// const ingredientsList= document.querySelector(".ingredients__list");
+// const ingredientsExitButton= document.querySelector(".ingredients__exit-btn");
+// // const = document.querySelector("");
 
 // Fetching recipes function
 async function fetchRecipes(query) {
@@ -31,7 +35,6 @@ searchButton.addEventListener('click', (e) => {
 async function fetchRandomRecipes() {
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`);
     const data = await response.json();
-    // console.log(data.meals[0]);
     
     recipeContainer.innerHTML = "";
     data.meals.forEach((meal) => {
@@ -52,7 +55,31 @@ randomButton.addEventListener('click', (e) => {
     fetchRandomRecipes(randomRecipe);
 });
 
+// function showContainer() {
+//     ingredientsContainer.classList.remove("hidden");
+//     document.body.style.overflow = "hidden";
+// }
 
+// function exitContainer() {
+//     ingredientsContainer.classList.add("hidden");
+//     document.body.style.overflow = "";
+// }
 
+// recipeContainer.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     const card = e.target.closest('.recipe-item');
+
+//     if (card) {
+//         getRecipeDetails(123);
+//     }
+// });
+
+// async function getRecipeDetails() {
+//     showContainer();
+// };
+
+// ingredientsExitButton.addEventListener('click', (e) => {
+
+// });
 
 
