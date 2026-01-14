@@ -4,14 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>random-recipe</title>
+    <title>Random Recipe Finder</title>
   </head>
   <body>
     <div class="recipe__finder">
-      <div>
-        <h1 class="recipe__title-name">Find a Recipe</h1>
-        <p class="recipe__text">Search for a recipe or find a random one!</p>
-      </div>
+      <h1 class="recipe__title-name">Find a Recipe</h1>
+      <p class="recipe__text">Search for a recipe or find a random one!</p>
       <div class="recipe__search">
         <input class="recipe__search-box" type="text" placeholder="Search a recipe..."/>
         <button class="recipe__search-btn">Search</button>
@@ -19,15 +17,15 @@
       <div class="recipe__random">
         <button class="recipe__random-btn">Find a random recipe</button>
       </div>
-    </div>
       <div class="recipe__container"></div>
+    </div>
 
     <div class="ingredients__container hidden">
       <div class="ingredients__list">
         <button class="ingredients__exit-btn">x</button>
         <div class="ingredients__details">
           <h2></h2>
-          <img src="" alt="Recipe Title"/>
+          <img src="" alt="Recipe">
           <h3></h3>
           <h3></h3>
           <h3></h3>
@@ -39,6 +37,5 @@
     </div>
 
     <script type="module" src="script.js"></script>
-    
   </body>
 </html>

@@ -6,17 +6,10 @@ const ingredientsContainer= document.querySelector(".ingredients__container");
 const ingredientsList= document.querySelector(".ingredients__list");
 const ingredientsExitButton= document.querySelector(".ingredients__exit-btn");
 const ingredientsDetails = document.querySelector(".ingredients__details");
-const messageContainer = document.querySelector(".messageContainer");
 
 // Fetching recipes function
 async function fetchRecipes(query) {
     try {
-        if (messageContainer) {
-            messageContainer.classList.remove('error');
-            messageContainer.classList.add('hidden');
-            messageContainer.textContent = '';
-        }
-
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
@@ -35,23 +28,11 @@ async function fetchRecipes(query) {
                 recipeContainer.appendChild(recipeCard);
             });
         } else {
-            recipeContainer.innerHTML = "<p>No recipes found. Try another search.</p>";
-            if (messageContainer) {
-                messageContainer.textContent = 'No recipes found.';
-                messageContainer.classList.remove('hidden');
-                messageContainer.classList.add('error');
-                messageContainer.setAttribute('role', 'alert');
-            }
+            recipeContainer.innerHTML = "";
         }
     } catch (error) {
        console.error('Error fetching recipes:', error);
-        recipeContainer.innerHTML = "<p>Error loading recipes, please try again.</p>";
-        if (messageContainer) {
-            messageContainer.textContent = 'Error loading recipes. Please try again.';
-            messageContainer.classList.remove('hidden');
-            messageContainer.classList.add('error');
-            messageContainer.setAttribute('role', 'alert');
-        }
+        recipeContainer.innerHTML = "";
     }
 }
 
@@ -65,12 +46,6 @@ searchButton.addEventListener('click', (e) => {
 // Fetching random recipes
 async function fetchRandomRecipes() {
     try {
-        if (messageContainer) {
-            messageContainer.classList.remove('error');
-            messageContainer.classList.add('hidden');
-            messageContainer.textContent = '';
-        }
-
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
@@ -88,23 +63,11 @@ async function fetchRandomRecipes() {
                 recipeContainer.appendChild(randomRecipeCard);
             });
         } else {
-            recipeContainer.innerHTML = "<p>No recipes found. Try again.</p>";
-            if (messageContainer) {
-                messageContainer.textContent = 'No recipes found.';
-                messageContainer.classList.remove('hidden');
-                messageContainer.classList.add('error');
-                messageContainer.setAttribute('role', 'alert');
-            }
+            recipeContainer.innerHTML = "";
         }
     } catch (error) {
         console.error('Error fetching random recipe:', error);
-        recipeContainer.innerHTML = "<p>Error loading recipes, please try again.</p>";
-        if (messageContainer) {
-            messageContainer.textContent = 'Error loading recipes. Please try again.';
-            messageContainer.classList.remove('hidden');
-            messageContainer.classList.add('error');
-            messageContainer.setAttribute('role', 'alert');
-        }
+        recipeContainer.innerHTML = "";
     }
 }
 
@@ -132,12 +95,6 @@ function exitContainer() {
 async function getRecipeDetails(id) {
     try {
         showContainer();
-
-        if (messageContainer) {
-            messageContainer.classList.remove('error');
-            messageContainer.classList.add('hidden');
-            messageContainer.textContent = '';
-        }
 
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -168,22 +125,9 @@ async function getRecipeDetails(id) {
                 <h3>Instructions:</h3>
                 <p>${meal.strInstructions}</p>
             `;
-        } else {
-            if (messageContainer) {
-                messageContainer.textContent = 'Details not found.';
-                messageContainer.classList.remove('hidden');
-                messageContainer.classList.add('error');
-                messageContainer.setAttribute('role', 'alert');
-            }
         }
     } catch (error) {
         console.error('Error fetching recipe details:', error);
-        if (messageContainer) {
-            messageContainer.textContent = 'Error loading details, please try again.';
-            messageContainer.classList.remove('hidden');
-            messageContainer.classList.add('error');
-            messageContainer.setAttribute('role', 'alert');
-        }
     }
 }
 
