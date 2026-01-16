@@ -4,7 +4,7 @@ A simple and responsive web application that allows users to search for deliciou
 
 ## 📸 Screenshot
 
-![recipe-project](image.png)
+<img width="1037" height="538" alt="image" src="https://github.com/user-attachments/assets/9f10f964-eee2-42d9-88ce-8faec1d49e70" />
 
 ## ✨ Features
 

@@ -117,7 +117,6 @@ html {
     display: flex;
     justify-content: center;
     animation: slideUp 0.8s ease-out 0.4s backwards;
-    z-index: 1;
 }
 
 .recipe__random-btn {
@@ -148,13 +147,21 @@ html {
     max-width: 1200px;
     margin: 0 auto;
     padding: 4rem 2rem;
-    width: 100%;
-    max-height: 80vh;
-    overflow-y: auto;
+    /* width: 100%;
+    max-height: 80vh; */
 }
 
-.recipe__container-card,
 .recipe__random-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.5s ease-in-out;
+    /* width: 100%;
+    max-width: 600px; */
+}
+
+.recipe__container-card {
     transition: all 0.5s ease-in-out;
 }
 
@@ -164,30 +171,23 @@ html {
     font-family: var(--primary-font);
     text-align: center;
     padding: 3rem 0;
+    color: white;
 }
 
 .recipe__container-card img,
 .recipe__random-card img {
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .recipe__container-card img:hover,
 .recipe__random-card img:hover {
     transform: translateY(3px);
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
 
-.recipe__random-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.recipe__random-card img {
-    width: 50%;
-}
 
 /* Recipe Ingredients Section */
 
@@ -212,10 +212,14 @@ html {
 }
 
 .ingredients__list {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     max-width: 900px;
     max-height: 75vh;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
     padding: 25px 30px;
     position: relative;
     transition: transform 0.3s ease;
@@ -244,6 +248,7 @@ html {
     width: 35px;
 }
 
+
 .ingredients__exit-btn:hover {
     color: black;
     background-color: white;
@@ -251,21 +256,28 @@ html {
 
 /* Ingredient Details Section */
 
+.ingredients__details {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    flex: 1;
+}
+
 .ingredients__details h2 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 20px;
-    color: white;
+    color: black;
 }
 
 .ingredients__details img {
-    width: 100%;
+    width: 50%;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .ingredients__details h3 {
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-top: 25px;
     margin-bottom: 10px;
@@ -281,7 +293,7 @@ html {
 .ingredients__details ul li {
     padding: 8px 0;
     border-bottom: 1px dashed lightgray;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .ingredients__details ul li:last-child {
@@ -290,7 +302,7 @@ html {
 
 .ingredients__details p {
     line-height: 1.8;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .ingredients__details a {
