@@ -142,46 +142,92 @@ html {
 
 .recipe__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 4rem 2rem;
 }
 
-.recipe__random-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transition: all 0.5s ease-in-out;
+@media (min-width: 640px) {
+    .recipe__container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
 }
 
-.recipe__container-card {
-    transition: all 0.5s ease-in-out;
+@media (min-width: 1024px) {
+    .recipe__container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+}
+
+.random-recipe-wrapper {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+}
+
+.random-recipe-wrapper .recipe__random-card {
+    max-width: 450px;
+    width: 100%;
+}
+
+.recipe__container-card,
+.recipe__random-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.recipe__container-card:hover,
+.recipe__random-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .recipe__container-card h2,
 .recipe__random-card h2 {
-    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
     font-family: var(--primary-font);
     text-align: center;
-    padding: 3rem 0;
+    padding: 2rem 1.5rem;
     color: white;
+    line-height: 1.3;
+    background: rgba(0, 0, 0, 0.2);
+    min-height: fit-content;
 }
 
 .recipe__container-card img,
 .recipe__random-card img {
+    display: block;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+}
+
+@media (min-width: 640px) {
+    .recipe__container-card img,
+    .recipe__random-card img {
+        min-height: 300px;
+    }
 }
 
 .recipe__container-card img:hover,
 .recipe__random-card img:hover {
-    transform: translateY(3px);
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
+    transform: scale(1.05);
 }
 
 

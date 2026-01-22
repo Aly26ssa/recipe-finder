@@ -52,6 +52,8 @@ async function fetchRandomRecipes() {
 
         recipeContainer.innerHTML = "";
         if (data.meals) {
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('random-recipe-wrapper');
             data.meals.forEach((meal) => {
                 const randomRecipeCard = document.createElement('div');
                 randomRecipeCard.classList.add('recipe__random-card');
@@ -60,8 +62,10 @@ async function fetchRandomRecipes() {
                     <h2>${meal.strMeal}</h2>
                     <img src="${meal.strMealThumb}"/>
                 `
-                recipeContainer.appendChild(randomRecipeCard);
+                wrapper.appendChild(randomRecipeCard);
             });
+            
+            recipeContainer.appendChild(wrapper);
         } else {
             recipeContainer.innerHTML = "";
         }
