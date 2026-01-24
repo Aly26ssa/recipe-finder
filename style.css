@@ -274,10 +274,6 @@ html {
 /* Exit Button */
 
 .ingredients__exit-btn {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     top: 15px;
     right: 15px;
@@ -294,6 +290,7 @@ html {
 .ingredients__exit-btn:hover {
     color: black;
     background-color: white;
+    cursor: pointer;
 }
 
 /* Ingredient Details Section */

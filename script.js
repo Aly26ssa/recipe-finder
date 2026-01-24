@@ -7,6 +7,25 @@ const ingredientsList= document.querySelector(".ingredients__list");
 const ingredientsExitButton= document.querySelector(".ingredients__exit-btn");
 const ingredientsDetails = document.querySelector(".ingredients__details");
 
+// Function to create recipe card
+function createRecipeCard(meal, isRandom = false) {
+    const recipeCard = document.createElement('div');
+    recipeCard.classList.add(isRandom ? 'recipe__random-card' : 'recipe__container-card');
+    recipeCard.dataset.id = meal.idMeal;
+    
+    const title = document.createElement('h2');
+    title.textContent = meal.strMeal;
+    
+    const img = document.createElement('img');
+    img.src = meal.strMealThumb;
+    img.alt = meal.strMeal;
+    
+    recipeCard.appendChild(title);
+    recipeCard.appendChild(img);
+    
+    return recipeCard;
+}
+
 // Fetching recipes function
 async function fetchRecipes(query) {
     try {
@@ -15,32 +34,25 @@ async function fetchRecipes(query) {
 
         const data = await response.json();
 
-        recipeContainer.innerHTML = "";
+        recipeContainer.textContent = "";
+        
         if (data.meals) {
             data.meals.forEach((meal) => {
-                const recipeCard = document.createElement('div');
-                recipeCard.classList.add('recipe__container-card');
-                recipeCard.dataset.id = meal.idMeal;
-                recipeCard.innerHTML = `
-                    <h2>${meal.strMeal}</h2>
-                    <img src="${meal.strMealThumb}"/>
-                `
+                const recipeCard = createRecipeCard(meal);
                 recipeContainer.appendChild(recipeCard);
             });
-        } else {
-            recipeContainer.innerHTML = "";
         }
     } catch (error) {
-       console.error('Error fetching recipes:', error);
-        recipeContainer.innerHTML = "";
+        console.error('Error fetching recipes:', error);
+        recipeContainer.textContent = "";
     }
 }
 
 // Enabling recipe search functionality
 searchButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        const searchRecipe = searchBox.value;
-        fetchRecipes(searchRecipe);
+    e.preventDefault();
+    const searchRecipe = searchBox.value;
+    fetchRecipes(searchRecipe);
 });
 
 // Fetching random recipes
@@ -50,36 +62,29 @@ async function fetchRandomRecipes() {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
 
-        recipeContainer.innerHTML = "";
+        recipeContainer.textContent = "";
+        
         if (data.meals) {
             const wrapper = document.createElement('div');
             wrapper.classList.add('random-recipe-wrapper');
+            
             data.meals.forEach((meal) => {
-                const randomRecipeCard = document.createElement('div');
-                randomRecipeCard.classList.add('recipe__random-card');
-                randomRecipeCard.dataset.id = meal.idMeal;
-                randomRecipeCard.innerHTML = `
-                    <h2>${meal.strMeal}</h2>
-                    <img src="${meal.strMealThumb}"/>
-                `
+                const randomRecipeCard = createRecipeCard(meal, true);
                 wrapper.appendChild(randomRecipeCard);
             });
             
             recipeContainer.appendChild(wrapper);
-        } else {
-            recipeContainer.innerHTML = "";
         }
     } catch (error) {
         console.error('Error fetching random recipe:', error);
-        recipeContainer.innerHTML = "";
+        recipeContainer.textContent = "";
     }
 }
 
 // Enabling random recipe functionality
 randomButton.addEventListener('click', (e) => {
     e.preventDefault();
-    const randomRecipe = recipeContainer.value;
-    fetchRandomRecipes(randomRecipe);
+    fetchRandomRecipes();
 });
 
 // Show ingredients container
@@ -94,7 +99,6 @@ function exitContainer() {
     document.body.style.overflow = "";
 }
 
-
 // Fetching recipe ingredients 
 async function getRecipeDetails(id) {
     try {
@@ -107,29 +111,59 @@ async function getRecipeDetails(id) {
         if (data.meals) {
             const meal = data.meals[0];
             
-            // List ingredients and measurements
-            let ingredientsListHtml = '';
+            // Clear previous details
+            ingredientsDetails.textContent = "";
+            
+            // Create title
+            const title = document.createElement('h2');
+            title.textContent = meal.strMeal;
+            
+            // Create image
+            const img = document.createElement('img');
+            img.src = meal.strMealThumb;
+            img.alt = meal.strMeal;
+            
+            // Create category
+            const category = document.createElement('h3');
+            category.textContent = `Category: ${meal.strCategory}`;
+            
+            // Create cuisine
+            const cuisine = document.createElement('h3');
+            cuisine.textContent = `Cuisine: ${meal.strArea}`;
+            
+            // Create ingredients heading
+            const ingredientsHeading = document.createElement('h3');
+            ingredientsHeading.textContent = 'Ingredients:';
+            
+            // Create ingredients list
+            const ul = document.createElement('ul');
             for (let i = 1; i <= 20; i++) {
                 const ingredient = meal[`strIngredient${i}`];
                 const measurement = meal[`strMeasure${i}`];
                 if (ingredient) {
-                    ingredientsListHtml += `<li>${measurement} ${ingredient}</li>`;
+                    const li = document.createElement('li');
+                    li.textContent = `${measurement} ${ingredient}`;
+                    ul.appendChild(li);
                 }
             }
             
-            // Populate the recipe details
-            ingredientsDetails.innerHTML = `
-                <h2>${meal.strMeal}</h2>
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}"/>
-                <h3>Category: ${meal.strCategory}</h3>
-                <h3>Cuisine: ${meal.strArea}</h3>
-                <h3>Ingredients:</h3>
-                <ul>
-                    ${ingredientsListHtml}
-                </ul>
-                <h3>Instructions:</h3>
-                <p>${meal.strInstructions}</p>
-            `;
+            // Create instructions heading
+            const instructionsHeading = document.createElement('h3');
+            instructionsHeading.textContent = 'Instructions:';
+            
+            // Create instructions paragraph
+            const instructions = document.createElement('p');
+            instructions.textContent = meal.strInstructions;
+            
+            // Append all elements
+            ingredientsDetails.appendChild(title);
+            ingredientsDetails.appendChild(img);
+            ingredientsDetails.appendChild(category);
+            ingredientsDetails.appendChild(cuisine);
+            ingredientsDetails.appendChild(ingredientsHeading);
+            ingredientsDetails.appendChild(ul);
+            ingredientsDetails.appendChild(instructionsHeading);
+            ingredientsDetails.appendChild(instructions);
         }
     } catch (error) {
         console.error('Error fetching recipe details:', error);
@@ -149,5 +183,3 @@ recipeContainer.addEventListener('click', (e) => {
 
 // Close ingredients button functionality
 ingredientsExitButton.addEventListener('click', exitContainer);
-
-
